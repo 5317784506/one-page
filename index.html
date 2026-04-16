@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta
+      name="description"
+      content="Верстка шапки, баннера, блока оборудования, вложенного меню и попапов на Bootstrap."
+    />
+    <link
+      rel="preload"
+      href="/images/logo.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <title>Диагностика и испытания электрооборудования</title>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Перейти к основному содержимому</a>
+
+    <header class="site-header" data-menu-root>
+      <div class="site-header__backdrop" data-menu-close></div>
+
+      <div class="container site-header__container">
+        <div class="site-header__top">
+          <a class="site-header__brand brand" href="/" aria-label="Главная">
+            <img
+              class="brand__logo"
+              src="/images/logo.svg"
+              width="214"
+              height="52"
+              alt="Логотип компании"
+            />
+          </a>
+
+          <ul class="site-header__contacts header-contacts" aria-label="Контакты">
+            <li class="header-contacts__item">
+              <span class="header-contacts__label">Телефон</span>
+              <a class="header-contacts__value" href="tel:+78005553535">
+                8 (800) 555-35-35
+              </a>
+            </li>
+            <li class="header-contacts__item">
+              <span class="header-contacts__label">E-mail</span>
+              <a class="header-contacts__value" href="mailto:info@company.ru">
+                info@company.ru
+              </a>
+            </li>
+            <li class="header-contacts__item">
+              <span class="header-contacts__label">География</span>
+              <span class="header-contacts__value">Работаем по всей России</span>
+            </li>
+          </ul>
+
+          <div class="site-header__controls">
+            <button
+              class="button button--outline"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#callback-modal"
+            >
+              Заказать звонок
+            </button>
+
+            <button
+              class="site-header__toggle burger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="site-navigation"
+              aria-label="Открыть меню"
+              data-menu-toggle
+            >
+              <span class="burger__label">Меню</span>
+              <span class="burger__box" aria-hidden="true">
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menu Variant 1 -->
+        <div class="site-header__navigation" id="site-navigation" data-menu-panel>
+          <nav class="site-header__nav menu" aria-label="Основное меню">
+            <ul class="menu__list menu__list--root">
+              <li class="menu__item">
+                <a class="menu__link" href="#hero" data-menu-link>Главная</a>
+              </li>
+
+              <li class="menu__item menu__item--has-children" data-menu-item>
+                <div class="menu__entry">
+                  <a class="menu__link" href="#equipment" data-menu-link>Услуги</a>
+                  <span
+                    class="menu__toggle"
+                    role="button"
+                    tabindex="0"
+                    aria-expanded="false"
+                    aria-controls="services-menu"
+                    aria-label="Открыть подменю раздела Услуги"
+                    data-submenu-toggle
+                  ></span>
+                </div>
+
+                <ul class="menu__list menu__list--submenu" id="services-menu">
+                  <li class="menu__item">
+                    <a class="menu__link" href="#equipment" data-menu-link>
+                      Электролаборатория
+                    </a>
+                  </li>
+                  <li class="menu__item menu__item--has-children" data-menu-item>
+                    <div class="menu__entry">
+                      <a class="menu__link" href="#equipment" data-menu-link>Диагностика</a>
+                      <span
+                        class="menu__toggle"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                        aria-controls="diagnostics-menu"
+                        aria-label="Открыть подменю раздела Диагностика"
+                        data-submenu-toggle
+                      ></span>
+                    </div>
+
+                    <ul class="menu__list menu__list--submenu" id="diagnostics-menu">
+                      <li class="menu__item">
+                        <a class="menu__link" href="#equipment" data-menu-link>
+                          Высоковольтные испытания
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a class="menu__link" href="#equipment" data-menu-link>
+                          Пусконаладочные измерения
+                        </a>
+                      </li>
+                      <li class="menu__item">
+                        <a class="menu__link" href="#equipment" data-menu-link>
+                          Анализ технического состояния
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu__item">
+                    <a class="menu__link" href="#equipment" data-menu-link>
+                      Метрологические услуги
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu__item menu__item--has-children" data-menu-item>
+                <div class="menu__entry">
+                  <a class="menu__link" href="#equipment" data-menu-link>Оборудование</a>
+                  <span
+                    class="menu__toggle"
+                    role="button"
+                    tabindex="0"
+                    aria-expanded="false"
+                    aria-controls="equipment-menu"
+                    aria-label="Открыть подменю раздела Оборудование"
+                    data-submenu-toggle
+                  ></span>
+                </div>
+
+                <ul class="menu__list menu__list--submenu" id="equipment-menu">
+                  <li class="menu__item">
+                    <a class="menu__link" href="#equipment" data-menu-link>
+                      Испытательные комплексы
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a class="menu__link" href="#equipment" data-menu-link>
+                      Мобильные лаборатории
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a class="menu__link" href="#equipment" data-menu-link>
+                      Измерительные стенды
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu__item">
+                <a class="menu__link" href="#about" data-menu-link>О компании</a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#contacts" data-menu-link>Контакты</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="site-header__panel-actions">
+            <button
+              class="button button--full"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#callback-modal"
+            >
+              Обратный звонок
+            </button>
+          </div>
+        </div>
+        <!-- Menu Variant 2 -->
+        <div class="header-bottom-nav-demo">
+          <nav class="header-bottom-nav" aria-label="Альтернативное меню">
+            <div class="header-bottom-nav__inner">
+              <ul class="header-bottom-menu">
+                <li class="header-bottom-menu__item header-bottom-menu__item--parent">
+                  <div class="header-bottom-menu__top">
+                    <a class="header-bottom-menu__link" href="#equipment">
+                      Услуги
+                      <svg
+                        width="9"
+                        height="6"
+                        viewBox="0 0 9 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M0.353516 0.353577L4.35352 4.35358L8.35352 0.353577"
+                          stroke="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <button
+                      class="header-bottom-menu__toggle js-header-bottom-toggle"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls="header-bottom-submenu-0"
+                    >
+                      <span class="header-bottom-menu__toggle-icon"></span>
+                    </button>
+                  </div>
+                  <div class="header-bottom-menu__dropdown" id="header-bottom-submenu-0">
+                    <ul class="header-bottom-submenu">
+                      <li class="header-bottom-submenu__item">
+                        <a class="header-bottom-submenu__link" href="#equipment">
+                          Электролаборатория
+                        </a>
+                      </li>
+                      <li class="header-bottom-submenu__item header-bottom-menu__item header-bottom-menu__item--parent">
+                        <div class="header-bottom-menu__top">
+                          <a class="header-bottom-submenu__link" href="#equipment">
+                            Диагностика
+                          </a>
+                          <button
+                            class="header-bottom-menu__toggle js-header-bottom-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="header-bottom-submenu-0-1"
+                          >
+                            <span class="header-bottom-menu__toggle-icon"></span>
+                          </button>
+                        </div>
+                        <div
+                          class="header-bottom-menu__dropdown header-bottom-menu__dropdown--nested"
+                          id="header-bottom-submenu-0-1"
+                        >
+                          <ul class="header-bottom-submenu">
+                            <li class="header-bottom-submenu__item">
+                              <a class="header-bottom-submenu__link" href="#equipment">
+                                Высоковольтные испытания
+                              </a>
+                            </li>
+                            <li class="header-bottom-submenu__item">
+                              <a class="header-bottom-submenu__link" href="#equipment">
+                                Пусконаладочные измерения
+                              </a>
+                            </li>
+                            <li class="header-bottom-submenu__item">
+                              <a class="header-bottom-submenu__link" href="#equipment">
+                                Анализ технического состояния
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="header-bottom-submenu__item">
+                        <a class="header-bottom-submenu__link" href="#equipment">
+                          Метрологические услуги
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="header-bottom-menu__item header-bottom-menu__item--parent">
+                  <div class="header-bottom-menu__top">
+                    <a class="header-bottom-menu__link" href="#equipment">
+                      Оборудование
+                      <svg
+                        width="9"
+                        height="6"
+                        viewBox="0 0 9 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M0.353516 0.353577L4.35352 4.35358L8.35352 0.353577"
+                          stroke="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <button
+                      class="header-bottom-menu__toggle js-header-bottom-toggle"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls="header-bottom-submenu-1"
+                    >
+                      <span class="header-bottom-menu__toggle-icon"></span>
+                    </button>
+                  </div>
+                  <div class="header-bottom-menu__dropdown" id="header-bottom-submenu-1">
+                    <ul class="header-bottom-submenu">
+                      <li class="header-bottom-submenu__item">
+                        <a class="header-bottom-submenu__link" href="#equipment">
+                          Испытательные комплексы
+                        </a>
+                      </li>
+                      <li class="header-bottom-submenu__item">
+                        <a class="header-bottom-submenu__link" href="#equipment">
+                          Мобильные лаборатории
+                        </a>
+                      </li>
+                      <li class="header-bottom-submenu__item">
+                        <a class="header-bottom-submenu__link" href="#equipment">
+                          Измерительные стенды
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="header-bottom-menu__item">
+                  <div class="header-bottom-menu__top">
+                    <a class="header-bottom-menu__link" href="#about">О компании</a>
+                  </div>
+                </li>
+                <li class="header-bottom-menu__item">
+                  <div class="header-bottom-menu__top">
+                    <a class="header-bottom-menu__link" href="#contacts">Контакты</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero__layout">
+            <div class="hero__content">
+              <p class="hero__eyebrow">Электролаборатория и метрология</p>
+              <h1 class="hero__title" id="hero-title">
+                Диагностика и испытания силового электрооборудования и
+                метрологические услуги по всей России
+              </h1>
+              <p class="hero__text">
+                Организуем испытания, измерения и техническое сопровождение
+                объектов. Каркас блока собран без декоративной стилизации,
+                чтобы вы могли спокойно довести визуал под макет.
+              </p>
+
+              <div class="hero__actions">
+                <button
+                  class="button"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#request-modal"
+                  data-form-topic="Заявка из баннера"
+                >
+                  Оставить заявку
+                </button>
+
+                <button
+                  class="button button--outline"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#question-modal"
+                >
+                  Задать вопрос
+                </button>
+              </div>
+            </div>
+
+            <div class="hero__media">
+              <img
+                class="hero__image"
+                src="/images/hero-illustration.svg"
+                width="600"
+                height="420"
+                alt="Иллюстрация промышленного объекта"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="equipment" id="equipment" aria-labelledby="equipment-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-heading__eyebrow">Наше оборудование</p>
+            <h2 class="section-heading__title" id="equipment-title">
+              Реализуем полный цикл работ по диагностике, испытаниям и измерениям
+            </h2>
+          </div>
+
+          <div class="equipment__list">
+            <article class="equipment-card">
+              <div class="equipment-card__media">
+                <img
+                  class="equipment-card__image"
+                  src="/images/equipment-high-voltage.svg"
+                  width="220"
+                  height="180"
+                  alt="Мобильная высоковольтная лаборатория"
+                />
+              </div>
+
+              <div class="equipment-card__content">
+                <p class="equipment-card__eyebrow">Для испытаний кабельных линий</p>
+                <h3 class="equipment-card__title">
+                  Мобильная лаборатория высоковольтных испытаний
+                </h3>
+                <ul class="equipment-card__features">
+                  <li class="equipment-card__feature">
+                    Испытание силовых кабелей и трансформаторов
+                  </li>
+                  <li class="equipment-card__feature">
+                    Поиск повреждений и локализация дефектов
+                  </li>
+                  <li class="equipment-card__feature">
+                    Выезд на объект в составе инженерной группы
+                  </li>
+                </ul>
+
+                <button
+                  class="button"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#request-modal"
+                  data-form-topic="Мобильная лаборатория высоковольтных испытаний"
+                >
+                  Подробнее
+                </button>
+              </div>
+
+              <dl class="equipment-card__meta">
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Назначение</dt>
+                  <dd class="equipment-card__meta-value">
+                    Высоковольтные испытания и диагностика
+                  </dd>
+                </div>
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Формат</dt>
+                  <dd class="equipment-card__meta-value">Мобильный комплекс</dd>
+                </div>
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Применение</dt>
+                  <dd class="equipment-card__meta-value">
+                    Подстанции, промышленные площадки, объекты энергетики
+                  </dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="equipment-card">
+              <div class="equipment-card__media">
+                <img
+                  class="equipment-card__image"
+                  src="/images/equipment-metering.svg"
+                  width="220"
+                  height="180"
+                  alt="Комплекс метрологических измерений"
+                />
+              </div>
+
+              <div class="equipment-card__content">
+                <p class="equipment-card__eyebrow">Для поверки и измерений</p>
+                <h3 class="equipment-card__title">
+                  Комплекс метрологических испытаний и поверки
+                </h3>
+                <ul class="equipment-card__features">
+                  <li class="equipment-card__feature">
+                    Проверка измерительных каналов и приборов учета
+                  </li>
+                  <li class="equipment-card__feature">
+                    Калибровка и метрологическое сопровождение
+                  </li>
+                  <li class="equipment-card__feature">
+                    Подготовка протоколов и сопроводительной документации
+                  </li>
+                </ul>
+
+                <button
+                  class="button"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#request-modal"
+                  data-form-topic="Комплекс метрологических испытаний и поверки"
+                >
+                  Подробнее
+                </button>
+              </div>
+
+              <dl class="equipment-card__meta">
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Назначение</dt>
+                  <dd class="equipment-card__meta-value">
+                    Поверка и калибровка измерительных средств
+                  </dd>
+                </div>
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Формат</dt>
+                  <dd class="equipment-card__meta-value">Стационарный и выездной</dd>
+                </div>
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Применение</dt>
+                  <dd class="equipment-card__meta-value">
+                    Лаборатории, производственные участки, узлы учета
+                  </dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="equipment-card">
+              <div class="equipment-card__media">
+                <img
+                  class="equipment-card__image"
+                  src="/images/equipment-diagnostics.svg"
+                  width="220"
+                  height="180"
+                  alt="Стенд диагностики электрооборудования"
+                />
+              </div>
+
+              <div class="equipment-card__content">
+                <p class="equipment-card__eyebrow">Для анализа состояния оборудования</p>
+                <h3 class="equipment-card__title">
+                  Диагностический стенд для комплексных измерений
+                </h3>
+                <ul class="equipment-card__features">
+                  <li class="equipment-card__feature">
+                    Оценка технического состояния силового оборудования
+                  </li>
+                  <li class="equipment-card__feature">
+                    Снятие параметров и построение отчетов
+                  </li>
+                  <li class="equipment-card__feature">
+                    Использование в рамках приемо-сдаточных испытаний
+                  </li>
+                </ul>
+
+                <button
+                  class="button"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#request-modal"
+                  data-form-topic="Диагностический стенд для комплексных измерений"
+                >
+                  Подробнее
+                </button>
+              </div>
+
+              <dl class="equipment-card__meta">
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Назначение</dt>
+                  <dd class="equipment-card__meta-value">
+                    Комплексная диагностика и контроль параметров
+                  </dd>
+                </div>
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Формат</dt>
+                  <dd class="equipment-card__meta-value">Измерительный стенд</dd>
+                </div>
+                <div class="equipment-card__meta-item">
+                  <dt class="equipment-card__meta-label">Применение</dt>
+                  <dd class="equipment-card__meta-value">
+                    Испытательные участки и сервисные подразделения
+                  </dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="placeholder-section" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <h2 class="placeholder-section__title" id="about-title">О компании</h2>
+          <p class="placeholder-section__text">
+            Вспомогательный якорь для проверки навигации. Основной объем
+            страницы вы будете достраивать самостоятельно.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="placeholder-section placeholder-section--last"
+        id="contacts"
+        aria-labelledby="contacts-title"
+      >
+        <div class="container">
+          <h2 class="placeholder-section__title" id="contacts-title">Контакты</h2>
+          <p class="placeholder-section__text">
+            Используйте этот блок как якорь для проверки переходов из меню и
+            закрытия мобильной панели.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal fade"
+      id="callback-modal"
+      tabindex="-1"
+      aria-labelledby="callback-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content form-modal">
+          <div class="form-modal__header">
+            <h2 class="form-modal__title" id="callback-modal-title">
+              Заказать обратный звонок
+            </h2>
+            <button
+              class="form-modal__close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Закрыть окно"
+            >
+              ×
+            </button>
+          </div>
+
+          <form class="contact-form" data-success-modal="#success-modal">
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="callback-name">Ваше имя</label>
+              <input class="contact-form__input" id="callback-name" name="name" type="text" required />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="callback-phone">Телефон</label>
+              <input
+                class="contact-form__input"
+                id="callback-phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                placeholder="+7 (___) ___-__-__"
+                required
+              />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="callback-time">
+                Удобное время для звонка
+              </label>
+              <input class="contact-form__input" id="callback-time" name="time" type="text" />
+            </div>
+
+            <label class="contact-form__checkbox">
+              <input class="contact-form__checkbox-input" type="checkbox" required />
+              <span class="contact-form__checkbox-text">
+                Согласен на обработку персональных данных
+              </span>
+            </label>
+
+            <button class="button button--full" type="submit">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="request-modal"
+      tabindex="-1"
+      aria-labelledby="request-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content form-modal">
+          <div class="form-modal__header">
+            <div>
+              <h2 class="form-modal__title" id="request-modal-title">
+                Заявка на оборудование или услугу
+              </h2>
+              <p class="form-modal__subtitle" data-request-topic>
+                Уточним задачу и подберем подходящее решение.
+              </p>
+            </div>
+            <button
+              class="form-modal__close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Закрыть окно"
+            >
+              ×
+            </button>
+          </div>
+
+          <form class="contact-form" data-success-modal="#success-modal">
+            <input type="hidden" name="topic" data-request-input />
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="request-name">Контактное лицо</label>
+              <input class="contact-form__input" id="request-name" name="name" type="text" required />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="request-company">Компания</label>
+              <input class="contact-form__input" id="request-company" name="company" type="text" />
+            </div>
+
+            <div class="contact-form__field contact-form__field--double">
+              <div>
+                <label class="contact-form__label" for="request-phone">Телефон</label>
+                <input
+                  class="contact-form__input"
+                  id="request-phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  required
+                />
+              </div>
+              <div>
+                <label class="contact-form__label" for="request-email">E-mail</label>
+                <input class="contact-form__input" id="request-email" name="email" type="email" />
+              </div>
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="request-message">Комментарий</label>
+              <textarea
+                class="contact-form__input contact-form__input--textarea"
+                id="request-message"
+                name="message"
+                rows="5"
+              ></textarea>
+            </div>
+
+            <label class="contact-form__checkbox">
+              <input class="contact-form__checkbox-input" type="checkbox" required />
+              <span class="contact-form__checkbox-text">
+                Подтверждаю согласие с политикой обработки данных
+              </span>
+            </label>
+
+            <button class="button button--full" type="submit">Отправить заявку</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="question-modal"
+      tabindex="-1"
+      aria-labelledby="question-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content form-modal">
+          <div class="form-modal__header">
+            <h2 class="form-modal__title" id="question-modal-title">Задать вопрос</h2>
+            <button
+              class="form-modal__close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Закрыть окно"
+            >
+              ×
+            </button>
+          </div>
+
+          <form class="contact-form" data-success-modal="#success-modal">
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="question-name">Ваше имя</label>
+              <input class="contact-form__input" id="question-name" name="name" type="text" required />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="question-email">E-mail</label>
+              <input class="contact-form__input" id="question-email" name="email" type="email" required />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="question-message">Ваш вопрос</label>
+              <textarea
+                class="contact-form__input contact-form__input--textarea"
+                id="question-message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button class="button button--full" type="submit">Отправить вопрос</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="success-modal"
+      tabindex="-1"
+      aria-labelledby="success-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-sm">
+        <div class="modal-content form-modal form-modal--compact">
+          <div class="form-modal__header form-modal__header--compact">
+            <h2 class="form-modal__title" id="success-modal-title">Заявка отправлена</h2>
+            <button
+              class="form-modal__close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Закрыть окно"
+            >
+              ×
+            </button>
+          </div>
+          <p class="form-modal__text">
+            Спасибо. Это демонстрационный попап: после отправки формы он
+            открывается вместо реального запроса на сервер.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
