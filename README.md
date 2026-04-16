@@ -29,3 +29,10 @@ $env:USERPROFILE='d:\job-projects\page'
 
 - `vite`
 - `sass`
+
+
+## Дома
+git clone https://github.com/5317784506/one-page.git
+cd one-page
+npm install
+npm run dev
