@@ -12,7 +12,7 @@
     />
     <link
       rel="preload"
-      href="/images/logo.svg"
+      href="/images/base/logo.png"
       as="image"
       type="image/svg+xml"
     />
@@ -86,144 +86,185 @@
 
         <div class="header__navigation header__bottom" id="site-navigation" data-menu-panel>
           <nav class="header__nav menu" aria-label="Основное меню">
+            <div class="header__mobile-head">
+              <span class="header__mobile-mark" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="8" height="8" rx="1.07143" fill="#74B84D"/>
+                  <rect x="13" y="3" width="8" height="8" rx="1.07143" fill="#74B84D"/>
+                  <rect x="3" y="13" width="8" height="8" rx="1.07143" fill="#74B84D"/>
+                  <rect x="13" y="13" width="8" height="8" rx="1.07143" fill="#2F4A74"/>
+                </svg>
+              </span>
+              <button class="header__mobile-close" type="button" data-menu-close aria-label="Закрыть меню">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.46662 23.932L0 22.4653L10.4994 11.966L0 1.46662L1.46662 0L11.966 10.4994L22.4653 0L23.932 1.46662L13.4326 11.966L23.932 22.4653L22.4653 23.932L11.966 13.4326L1.46662 23.932Z" fill="#404040"/>
+                </svg>
+              </button>
+            </div>
+
             <ul class="menu__list menu__list--root">
               <li class="menu__item menu__item-catalog menu__item--has-children" data-menu-item>
                 <div class="menu__entry">
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<rect x="3" y="3" width="8" height="8" rx="1.07143" fill="#2F4A74"/>
-										<rect x="13" y="3" width="8" height="8" rx="1.07143" fill="#74B84D"/>
-										<rect x="3" y="13" width="8" height="8" rx="1.07143" fill="#2F4A74" fill-opacity="0.5"/>
-										<rect x="13" y="13" width="8" height="8" rx="1.07143" fill="#2F4A74"/>
-									</svg>
-                  <a class="menu__link" href="#" data-menu-link>
-										Каталог услуг
-									</a>
-									<span class="menu__item--has-children-svg">
-										<svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
-										</svg>
-									</span>
+                  <svg class="menu__item-catalog-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="3" width="8" height="8" rx="1.07143" fill="#2F4A74"/>
+                    <rect x="13" y="3" width="8" height="8" rx="1.07143" fill="#74B84D"/>
+                    <rect x="3" y="13" width="8" height="8" rx="1.07143" fill="#2F4A74" fill-opacity="0.5"/>
+                    <rect x="13" y="13" width="8" height="8" rx="1.07143" fill="#2F4A74"/>
+                  </svg>
+                  <a class="menu__link" href="#">Каталог услуг</a>
+                  <button
+                    class="menu__toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="services-menu"
+                    aria-label="Открыть подменю Каталог услуг"
+                    data-submenu-toggle
+                  >
+                    <span class="menu__item--has-children-svg">
+                      <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
+                      </svg>
+                    </span>
+                  </button>
                 </div>
+
                 <ul class="menu__list menu__list--submenu" id="services-menu">
-									<div class="menu__list--submenu-body">
-										<li class="menu__item menu__item--has-children" data-menu-item>
-											<div class="menu__entry">
-												<a class="menu__link" href="#" data-menu-link>Лаборатория диагностики</a>
-													<span>
-														<svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
-														</svg>
-													</span>
-											</div>
-											<ul class="menu__list menu__list--submenu" id="diagnostics-menu">
-												<div class="menu__list--submenu-body">
+                  <div class="menu__list--submenu-body">
+                    <li class="menu__item menu__item--has-children" data-menu-item>
+                      <div class="menu__entry">
+                        <a class="menu__link" href="#">Лаборатория диагностики</a>
+                        <button
+                          class="menu__toggle"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="diagnostics-menu-1"
+                          aria-label="Открыть подменю Лаборатория диагностики"
+                          data-submenu-toggle
+                        >
+                          <span class="menu__item--has-children-svg">
+                            <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                      <ul class="menu__list menu__list--submenu" id="diagnostics-menu-1">
+                        <div class="menu__list--submenu-body">
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика трансформаторов</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика электрических машин</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика коммутационной аппаратуры</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика кабельных линий</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика ЗУ с определением ЭМС</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Техническое освидетельствование</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика электрооборудования с применением БПЛА</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Испытание СИЗ</a>
+                          </li>
+                        </div>
+                      </ul>
+                    </li>
+
+                    <li class="menu__item menu__item--has-children" data-menu-item>
+                      <div class="menu__entry">
+                        <a class="menu__link" href="#">Лаборатория физико-химического анализа</a>
+                        <button
+                          class="menu__toggle"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="diagnostics-menu-2"
+                          aria-label="Открыть подменю Лаборатория физико-химического анализа"
+                          data-submenu-toggle
+                        >
+                          <span class="menu__item--has-children-svg">
+                            <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                      <ul class="menu__list menu__list--submenu" id="diagnostics-menu-2">
+                        <div class="menu__list--submenu-body">
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика трансформаторов</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика электрических машин</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика коммутационной аппаратуры</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика кабельных линий</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика ЗУ с определением ЭМС</a>
+                          </li>
+                        </div>
+                      </ul>
+                    </li>
+
+                    <li class="menu__item menu__item--has-children" data-menu-item>
+                      <div class="menu__entry">
+                        <a class="menu__link" href="#">Лаборатория метрологии</a>
+                        <button
+                          class="menu__toggle"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="diagnostics-menu-3"
+                          aria-label="Открыть подменю Лаборатория метрологии"
+                          data-submenu-toggle
+                        >
+                          <span class="menu__item--has-children-svg">
+                            <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                      <ul class="menu__list menu__list--submenu" id="diagnostics-menu-3">
+                        <div class="menu__list--submenu-body">
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика трансформаторов</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика электрических машин</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика коммутационной аппаратуры</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика кабельных линий</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика ЗУ с определением ЭМС</a>
+                          </li>
 													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика трансформаторов
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика электрических машин
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика коммутационной аппаратуры
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика кабельных линий
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика ЗУ с определением ЭМС
-														</a>
-													</li>
-												</div>
-											</ul>
-										</li>
-										<li class="menu__item menu__item--has-children" data-menu-item>
-											<div class="menu__entry">
-												<a class="menu__link" href="#" data-menu-link>Лаборатория физико-химического анализа</a>
-													<span>
-														<svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
-														</svg>
-													</span>
-											</div>
-											<ul class="menu__list menu__list--submenu" id="diagnostics-menu">
-												<div class="menu__list--submenu-body">
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика трансформаторов 2
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика электрических машин 2
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика коммутационной аппаратуры 2
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика кабельных линий
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика ЗУ с определением ЭМС 2
-														</a>
-													</li>
-												</div>
-											</ul>
-										</li>
-										<li class="menu__item menu__item--has-children" data-menu-item>
-											<div class="menu__entry">
-												<a class="menu__link" href="#" data-menu-link>Лаборатория метрологии</a>
-													<span>
-														<svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-															<path d="M6.75 3.46387L0 6.92797L0 -0.000234365L6.75 3.46387Z" fill="#404040"/>
-														</svg>
-													</span>
-											</div>
-											<ul class="menu__list menu__list--submenu" id="diagnostics-menu">
-												<div class="menu__list--submenu-body">
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика трансформаторов 3
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика электрических машин 3
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика коммутационной аппаратуры 3
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика кабельных линий 3
-														</a>
-													</li>
-													<li class="menu__item">
-														<a class="menu__link" href="#" data-menu-link>
-															Диагностика ЗУ с определением ЭМС 3
-														</a>
-													</li>
-												</div>
-											</ul>
-										</li>
-									</div>
+                            <a class="menu__link" href="#" data-menu-link>Диагностика коммутационной аппаратуры</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика кабельных линий</a>
+                          </li>
+                          <li class="menu__item">
+                            <a class="menu__link" href="#" data-menu-link>Диагностика ЗУ с определением ЭМС</a>
+                          </li>
+                        </div>
+                      </ul>
+                    </li>
+                  </div>
                 </ul>
               </li>
               <li class="menu__item">
@@ -235,13 +276,45 @@
               <li class="menu__item">
                 <a class="menu__link" href="#" data-menu-link>Новости</a>
               </li>
-							<li class="menu__item">
+              <li class="menu__item">
                 <a class="menu__link" href="#" data-menu-link>Библиотека</a>
               </li>
               <li class="menu__item">
                 <a class="menu__link" href="#" data-menu-link>Контакты</a>
               </li>
             </ul>
+
+            <div class="header__mobile-footer">
+              <ul class="header__mobile-contacts" aria-label="Контакты в мобильном меню">
+                <li class="header__mobile-contacts-item">
+                  <span class="header__mobile-contacts-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9.58203 7C9.58203 6.86739 9.52931 6.74025 9.43555 6.64648C9.34178 6.55272 9.21464 6.5 9.08203 6.5H6.83203C6.69942 6.5 6.57228 6.55272 6.47852 6.64648C6.38475 6.74025 6.33203 6.86739 6.33203 7C6.33203 10.3152 7.64896 13.4947 9.99316 15.8389C12.3374 18.1831 15.5168 19.5 18.832 19.5C18.9646 19.5 19.0918 19.4473 19.1855 19.3535C19.2793 19.2597 19.332 19.1326 19.332 19V16.75C19.332 16.6174 19.2793 16.4903 19.1855 16.3965C19.0918 16.3027 18.9646 16.25 18.832 16.25H16.582C16.5044 16.25 16.4278 16.268 16.3584 16.3027C16.289 16.3374 16.2282 16.3881 16.1816 16.4502L16.1768 16.457L15.9102 16.8037L15.9111 16.8047C15.6703 17.1209 15.329 17.346 14.9434 17.4424C14.5576 17.5387 14.1504 17.5008 13.7891 17.335C13.7813 17.3314 13.7733 17.327 13.7656 17.3232C11.4841 16.2035 9.63728 14.3601 8.51465 12.0801L8.5127 12.0762C8.33569 11.713 8.28977 11.2994 8.38281 10.9062L8.4248 10.7607C8.53496 10.4271 8.74334 10.1326 9.02441 9.91797L9.03125 9.91309L9.38184 9.65039C9.44393 9.60382 9.49458 9.54306 9.5293 9.47363C9.56401 9.40421 9.58203 9.32762 9.58203 9.25V7ZM11.582 9.25C11.582 9.63811 11.4919 10.021 11.3184 10.3682C11.1665 10.6719 10.954 10.9406 10.6953 11.1592L10.582 11.25L10.4053 11.3818C11.3055 13.1131 12.7165 14.524 14.4473 15.4248L14.5869 15.2432C14.8191 14.9358 15.1192 14.686 15.4639 14.5137C15.811 14.3401 16.1939 14.25 16.582 14.25H18.832C19.4951 14.25 20.1308 14.5136 20.5996 14.9824C21.0685 15.4513 21.332 16.087 21.332 16.75V19C21.332 19.663 21.0685 20.2987 20.5996 20.7676C20.1308 21.2364 19.4951 21.5 18.832 21.5C14.9864 21.5 11.2984 19.9722 8.5791 17.2529C5.85982 14.5337 4.33203 10.8456 4.33203 7C4.33203 6.33696 4.59561 5.70126 5.06445 5.23242C5.53329 4.76358 6.16899 4.5 6.83203 4.5H9.08203C9.74507 4.5 10.3808 4.76358 10.8496 5.23242C11.3184 5.70126 11.582 6.33696 11.582 7V9.25Z" fill="#404040"/>
+                    </svg>
+                  </span>
+                  <a class="header__mobile-contacts-link" href="tel:+73433182161">+7 (343) 318-21-61</a>
+                </li>
+                <li class="header__mobile-contacts-item">
+                  <span class="header__mobile-contacts-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.1074 8.51172C20.1074 8.24343 20.0002 7.9866 19.8105 7.79688C19.6208 7.60717 19.364 7.50007 19.0957 7.5H5.01172C4.74341 7.50006 4.4866 7.60715 4.29688 7.79688C4.10715 7.9866 4.00006 8.24341 4 8.51172V18.5713C4 18.8397 4.1071 19.0973 4.29688 19.2871C4.48658 19.4767 4.74353 19.5839 5.01172 19.584H19.0957C19.3639 19.5839 19.6209 19.4767 19.8105 19.2871C20.0003 19.0973 20.1074 18.8397 20.1074 18.5713V8.51172ZM22.1074 18.5713C22.1074 19.37 21.7903 20.1364 21.2256 20.7012C20.6608 21.266 19.8944 21.5839 19.0957 21.584H5.01172C4.21298 21.5839 3.44663 21.266 2.88184 20.7012C2.31714 20.1363 2 19.37 2 18.5713V8.51172C2.00006 7.71298 2.31704 6.94663 2.88184 6.38184C3.44663 5.81704 4.21298 5.50006 5.01172 5.5H19.0957C19.8944 5.50007 20.6608 5.81706 21.2256 6.38184C21.7904 6.94663 22.1074 7.713 22.1074 8.51172V18.5713Z" fill="#404040"/>
+                      <path d="M20.5527 7.67978C21.0122 7.37347 21.6331 7.49761 21.9394 7.95712C22.2457 8.41663 22.1216 9.03748 21.6621 9.34384L12.6084 15.38C12.2725 15.6038 11.8348 15.6038 11.499 15.38L2.44528 9.34384C1.98575 9.03749 1.86158 8.41665 2.16794 7.95712C2.47429 7.49759 3.09513 7.37342 3.55465 7.67978L12.0537 13.3458L20.5527 7.67978Z" fill="#404040"/>
+                    </svg>
+                  </span>
+                  <a class="header__mobile-contacts-link" href="mailto:info@itc-energo.ru">info@itc-energo.ru</a>
+                </li>
+              </ul>
+
+              <button
+                class="button header__mobile-consultation"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#consultation-modal"
+                data-menu-close
+              >
+                Получить консультацию
+              </button>
+            </div>
           </nav>
 
           <div class="header__panel-actions">
@@ -250,10 +323,11 @@
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#callback-modal"
+              data-menu-close
             >
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M0 20V17.225C0 16.6583 0.141667 16.1333 0.425 15.65C0.708333 15.1667 1.1 14.8 1.6 14.55C1.83333 14.4333 2.05833 14.325 2.275 14.225C2.50833 14.125 2.75 14.0333 3 13.95V20H0ZM4 13C3.16667 13 2.45833 12.7083 1.875 12.125C1.29167 11.5417 1 10.8333 1 10C1 9.16667 1.29167 8.45833 1.875 7.875C2.45833 7.29167 3.16667 7 4 7C4.83333 7 5.54167 7.29167 6.125 7.875C6.70833 8.45833 7 9.16667 7 10C7 10.8333 6.70833 11.5417 6.125 12.125C5.54167 12.7083 4.83333 13 4 13ZM4 11C4.28333 11 4.51667 10.9083 4.7 10.725C4.9 10.525 5 10.2833 5 10C5 9.71667 4.9 9.48333 4.7 9.3C4.51667 9.1 4.28333 9 4 9C3.71667 9 3.475 9.1 3.275 9.3C3.09167 9.48333 3 9.71667 3 10C3 10.2833 3.09167 10.525 3.275 10.725C3.475 10.9083 3.71667 11 4 11ZM4 20V17.2C4 16.6333 4.14167 16.1167 4.425 15.65C4.725 15.1667 5.11667 14.8 5.6 14.55C6.63333 14.0333 7.68333 13.65 8.75 13.4C9.81667 13.1333 10.9 13 12 13C13.1 13 14.1833 13.1333 15.25 13.4C16.3167 13.65 17.3667 14.0333 18.4 14.55C18.8833 14.8 19.2667 15.1667 19.55 15.65C19.85 16.1167 20 16.6333 20 17.2V20H4ZM6 18H18V17.2C18 17.0167 17.95 16.85 17.85 16.7C17.7667 16.55 17.65 16.4333 17.5 16.35C16.6 15.9 15.6917 15.5667 14.775 15.35C13.8583 15.1167 12.9333 15 12 15C11.0667 15 10.1417 15.1167 9.225 15.35C8.30833 15.5667 7.4 15.9 6.5 16.35C6.35 16.4333 6.225 16.55 6.125 16.7C6.04167 16.85 6 17.0167 6 17.2V18ZM12 12C10.9 12 9.95833 11.6083 9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12ZM12 10C12.55 10 13.0167 9.80833 13.4 9.425C13.8 9.025 14 8.55 14 8C14 7.45 13.8 6.98333 13.4 6.6C13.0167 6.2 12.55 6 12 6C11.45 6 10.975 6.2 10.575 6.6C10.1917 6.98333 10 7.45 10 8C10 8.55 10.1917 9.025 10.575 9.425C10.975 9.80833 11.45 10 12 10ZM20 13C19.1667 13 18.4583 12.7083 17.875 12.125C17.2917 11.5417 17 10.8333 17 10C17 9.16667 17.2917 8.45833 17.875 7.875C18.4583 7.29167 19.1667 7 20 7C20.8333 7 21.5417 7.29167 22.125 7.875C22.7083 8.45833 23 9.16667 23 10C23 10.8333 22.7083 11.5417 22.125 12.125C21.5417 12.7083 20.8333 13 20 13ZM20 11C20.2833 11 20.5167 10.9083 20.7 10.725C20.9 10.525 21 10.2833 21 10C21 9.71667 20.9 9.48333 20.7 9.3C20.5167 9.1 20.2833 9 20 9C19.7167 9 19.475 9.1 19.275 9.3C19.0917 9.48333 19 9.71667 19 10C19 10.2833 19.0917 10.525 19.275 10.725C19.475 10.9083 19.7167 11 20 11ZM21 20V13.95C21.25 14.0333 21.4833 14.125 21.7 14.225C21.9333 14.325 22.1667 14.4333 22.4 14.55C22.9 14.8 23.2917 15.1667 23.575 15.65C23.8583 16.1333 24 16.6583 24 17.225V20H21Z" fill="white"/>
-						</svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 20V17.225C0 16.6583 0.141667 16.1333 0.425 15.65C0.708333 15.1667 1.1 14.8 1.6 14.55C1.83333 14.4333 2.05833 14.325 2.275 14.225C2.50833 14.125 2.75 14.0333 3 13.95V20H0ZM4 13C3.16667 13 2.45833 12.7083 1.875 12.125C1.29167 11.5417 1 10.8333 1 10C1 9.16667 1.29167 8.45833 1.875 7.875C2.45833 7.29167 3.16667 7 4 7C4.83333 7 5.54167 7.29167 6.125 7.875C6.70833 8.45833 7 9.16667 7 10C7 10.8333 6.70833 11.5417 6.125 12.125C5.54167 12.7083 4.83333 13 4 13ZM4 11C4.28333 11 4.51667 10.9083 4.7 10.725C4.9 10.525 5 10.2833 5 10C5 9.71667 4.9 9.48333 4.7 9.3C4.51667 9.1 4.28333 9 4 9C3.71667 9 3.475 9.1 3.275 9.3C3.09167 9.48333 3 9.71667 3 10C3 10.2833 3.09167 10.525 3.275 10.725C3.475 10.9083 3.71667 11 4 11ZM4 20V17.2C4 16.6333 4.14167 16.1167 4.425 15.65C4.725 15.1667 5.11667 14.8 5.6 14.55C6.63333 14.0333 7.68333 13.65 8.75 13.4C9.81667 13.1333 10.9 13 12 13C13.1 13 14.1833 13.1333 15.25 13.4C16.3167 13.65 17.3667 14.0333 18.4 14.55C18.8833 14.8 19.2667 15.1667 19.55 15.65C19.85 16.1167 20 16.6333 20 17.2V20H4ZM6 18H18V17.2C18 17.0167 17.95 16.85 17.85 16.7C17.7667 16.55 17.65 16.4333 17.5 16.35C16.6 15.9 15.6917 15.5667 14.775 15.35C13.8583 15.1167 12.9333 15 12 15C11.0667 15 10.1417 15.1167 9.225 15.35C8.30833 15.5667 7.4 15.9 6.5 16.35C6.35 16.4333 6.225 16.55 6.125 16.7C6.04167 16.85 6 17.0167 6 17.2V18ZM12 12C10.9 12 9.95833 11.6083 9.175 10.825C8.39167 10.0417 8 9.1 8 8C8 6.9 8.39167 5.95833 9.175 5.175C9.95833 4.39167 10.9 4 12 4C13.1 4 14.0417 4.39167 14.825 5.175C15.6083 5.95833 16 6.9 16 8C16 9.1 15.6083 10.0417 14.825 10.825C14.0417 11.6083 13.1 12 12 12ZM12 10C12.55 10 13.0167 9.80833 13.4 9.425C13.8 9.025 14 8.55 14 8C14 7.45 13.8 6.98333 13.4 6.6C13.0167 6.2 12.55 6 12 6C11.45 6 10.975 6.2 10.575 6.6C10.1917 6.98333 10 7.45 10 8C10 8.55 10.1917 9.025 10.575 9.425C10.975 9.80833 11.45 10 12 10ZM20 13C19.1667 13 18.4583 12.7083 17.875 12.125C17.2917 11.5417 17 10.8333 17 10C17 9.16667 17.2917 8.45833 17.875 7.875C18.4583 7.29167 19.1667 7 20 7C20.8333 7 21.5417 7.29167 22.125 7.875C22.7083 8.45833 23 9.16667 23 10C23 10.8333 22.7083 11.5417 22.125 12.125C21.5417 12.7083 20.8333 13 20 13ZM20 11C20.2833 11 20.5167 10.9083 20.7 10.725C20.9 10.525 21 10.2833 21 10C21 9.71667 20.9 9.48333 20.7 9.3C20.5167 9.1 20.2833 9 20 9C19.7167 9 19.475 9.1 19.275 9.3C19.0917 9.48333 19 9.71667 19 10C19 10.2833 19.0917 10.525 19.275 10.725C19.475 10.9083 19.7167 11 20 11ZM21 20V13.95C21.25 14.0333 21.4833 14.125 21.7 14.225C21.9333 14.325 22.1667 14.4333 22.4 14.55C22.9 14.8 23.2917 15.1667 23.575 15.65C23.8583 16.1333 24 16.6583 24 17.225V20H21Z" fill="white"/>
+              </svg>
               Совет по диагностике
             </button>
           </div>
@@ -263,7 +337,11 @@
 		<div class="header-bg"></div>
     <main id="main-content">
       <section class="hero" id="hero">
-				<img src="/images/hero.png" alt="" class="hero__bg">
+				<picture class="hero__bg">
+					<source srcset="/images/hero.avif" type="image/avif">
+					<source srcset="/images/hero.webp" type="image/webp">
+					<img src="/images/hero.png" alt="" class="hero__bg-image">
+				</picture>
         <div class="container">
           <div class="hero__container">
             <div class="hero__body">
@@ -299,7 +377,7 @@
       <section class="equipment section-block" id="equipment" aria-labelledby="equipment-title">
         <div class="container">
           <div class="section-heading">
-            <div class="equipment__subtitle">Диагностика электрооборудования</div>
+            <div class="equipment__subtitle">Для электрооборудования энергетических и промышленных объектов</div>
             <h2 class="section-title equipment__title" id="equipment-title">
               <span>Реализуем полный цикл работ </span> </br>по диагностике, испытаниям и измерениям
             </h2>
@@ -308,14 +386,14 @@
           <div class="equipment__list">
             <div class="equipment__card">
 							<div class="row">
-								<div class="col-12 col-md-6 col-lg-4">
+								<div class="col-12 col-md-6 col-xl-4">
 									<div class="equipment__card-media">
 										<video class="equipment__card-image" width="368" height="350" autoplay muted loop playsinline preload="metadata">
 											<source src="/images/video1.mp4" type="video/mp4">
 										</video>
 									</div>
 								</div>
-								<div class="col-12 col-md-6 col-lg-8">
+								<div class="col-12 col-md-6 col-xl-8">
 									<div class="equipment__card-content">
 										<div class="equipment__card-eyebrow">Лаборатория диагностики</div>
 										<h3 class="equipment__card-title">
@@ -405,14 +483,14 @@
             </div>
 						<div class="equipment__card">
 							<div class="row">
-								<div class="col-12 col-md-6 col-lg-4">
+								<div class="col-12 col-md-6 col-xl-4">
 									<div class="equipment__card-media">
 										<video class="equipment__card-image" width="368" height="350" autoplay muted loop playsinline preload="metadata">
 											<source src="/images/video2.mp4" type="video/mp4">
 										</video>
 									</div>
 								</div>
-								<div class="col-12 col-md-6 col-lg-8">
+								<div class="col-12 col-md-6 col-xl-8">
 									<div class="equipment__card-content">
 										<div class="equipment__card-eyebrow">Лаборатория физико-химического анализа</div>
 										<h3 class="equipment__card-title">
@@ -519,14 +597,14 @@
             </div>
 						<div class="equipment__card">
 							<div class="row">
-								<div class="col-12 col-md-6 col-lg-4">
+								<div class="col-12 col-md-6 col-xl-4">
 									<div class="equipment__card-media">
 										<video class="equipment__card-image" width="368" height="350" autoplay muted loop playsinline preload="metadata">
 											<source src="/images/video3.mp4" type="video/mp4">
 										</video>
 									</div>
 								</div>
-								<div class="col-12 col-md-6 col-lg-8">
+								<div class="col-12 col-md-6 col-xl-8">
 									<div class="equipment__card-content">
 										<div class="equipment__card-eyebrow">Лаборатория метрологии</div>
 										<h3 class="equipment__card-title">
@@ -696,7 +774,7 @@
               <label class="contact-form__label" for="callback-email">
                 Ваш E-mail*
               </label>
-              <input class="contact-form__input" placeholder="pochta@mail.ru*" id="callback-email" name="email" type="text" required/>
+              <input class="contact-form__input" placeholder="pochta@mail.ru*" id="callback-email" name="email" type="email" required/>
             </div>
 
             <fieldset class="contact-form__field">
@@ -877,13 +955,13 @@
       class="modal fade consultation-modal"
       id="consultation-modal"
       tabindex="-1"
-      aria-labelledby="callback-modal-title"
+      aria-labelledby="consultation-modal-title"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content form-modal">
           <div class="form-modal__header">
-            <h2 class="form-modal__title" id="callback-modal-title">
+            <h2 class="form-modal__title" id="consultation-modal-title">
               Получите <span>бесплатную консультацию</span>
             </h2>
 						<div class="form-modal__text">Ответим на все вопросы и поможем подобрать нужную услугу.
@@ -903,13 +981,13 @@
 
           <form class="contact-form" data-success-modal="#success-modal">
             <div class="contact-form__field">
-              <input class="contact-form__input" placeholder="Ваше имя**" id="callback-name" name="name" type="text" />
+              <input class="contact-form__input" placeholder="Ваше имя**" id="consultation-name" name="name" type="text" />
             </div>
 
             <div class="contact-form__field">
               <input
                 class="contact-form__input"
-                id="callback-phone"
+                id="consultation-phone"
                 name="phone"
                 type="tel"
                 inputmode="tel"
@@ -921,7 +999,7 @@
               <div class="contact-form__checkbox">
                 <input
                   class="contact-form__checkbox-input"
-                  id="callback-consent-personal"
+                  id="consultation-consent-personal"
                   type="checkbox"
                   data-callback-required-consent
                 />
@@ -937,7 +1015,7 @@
               <div class="contact-form__checkbox">
                 <input
                   class="contact-form__checkbox-input"
-                  id="callback-consent-mailing"
+                  id="consultation-consent-mailing"
                   type="checkbox"
                 />
 								<div class="contact-form__checkbox-text">
@@ -949,7 +1027,6 @@
             <button class="button button--full contact-form-submit" type="submit" data-callback-submit disabled>
               Получить консультацию
             </button>
-            <!-- END: Callback modal extra fields, files and consents -->
           </form>
         </div>
       </div>

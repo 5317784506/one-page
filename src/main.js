@@ -7,6 +7,7 @@ const menuToggle = document.querySelector('[data-menu-toggle]');
 const menuPanel = document.querySelector('[data-menu-panel]');
 const submenuToggles = document.querySelectorAll('[data-submenu-toggle]');
 const menuCloseTriggers = document.querySelectorAll('[data-menu-close], [data-menu-link]');
+const submenuLinks = document.querySelectorAll('[data-menu-item] > .menu__entry > .menu__link');
 const requestTopicOutput = document.querySelector('[data-request-topic]');
 const requestTopicInput = document.querySelector('[data-request-input]');
 const openRequestButtons = document.querySelectorAll('[data-form-topic]');
@@ -58,7 +59,13 @@ if (menuPanel && !desktopMediaQuery.matches) {
 if (menuToggle) {
   menuToggle.addEventListener('click', () => {
     const shouldOpen = !header?.classList.contains('header--menu-open');
-    setMenuState(Boolean(shouldOpen));
+
+    if (shouldOpen) {
+      setMenuState(true);
+      return;
+    }
+
+    closeMenu();
   });
 }
 
@@ -81,20 +88,42 @@ const handleSubmenuToggle = (toggle) => {
 
   currentList.querySelectorAll(':scope > [data-menu-item].is-open').forEach((item) => {
     if (item !== currentItem) {
+      closeNestedMenus(item);
       item.classList.remove('is-open');
-      item
-        .querySelectorAll(':scope > .menu__entry > [data-submenu-toggle]')
-        .forEach((siblingToggle) => siblingToggle.setAttribute('aria-expanded', 'false'));
     }
   });
 
-  currentItem.classList.toggle('is-open', !isOpen);
-  toggle.setAttribute('aria-expanded', String(!isOpen));
+  if (isOpen) {
+    closeNestedMenus(currentItem);
+    currentItem.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    return;
+  }
+
+  currentItem.classList.add('is-open');
+  toggle.setAttribute('aria-expanded', 'true');
 };
 
 submenuToggles.forEach((toggle) => {
   toggle.addEventListener('click', () => {
     handleSubmenuToggle(toggle);
+  });
+});
+
+submenuLinks.forEach((link) => {
+  const parentItem = link.closest('[data-menu-item]');
+  const parentToggle = parentItem?.querySelector(':scope > .menu__entry > [data-submenu-toggle]');
+
+  if (!parentToggle || link.getAttribute('href') !== '#') {
+    return;
+  }
+
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    if (!desktopMediaQuery.matches) {
+      handleSubmenuToggle(parentToggle);
+    }
   });
 });
 
