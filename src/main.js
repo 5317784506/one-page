@@ -1,7 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'bootstrap/js/dist/modal';
 import './styles/main.scss';
-
-/* Menu variant 1 start */
 
 const header = document.querySelector('[data-menu-root]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
@@ -24,7 +23,7 @@ const setMenuState = (isOpen) => {
     return;
   }
 
-  header.classList.toggle('site-header--menu-open', isOpen);
+  header.classList.toggle('header--menu-open', isOpen);
   document.body.classList.toggle('is-scroll-locked', isOpen);
   menuToggle.setAttribute('aria-expanded', String(isOpen));
   menuToggle.setAttribute(
@@ -58,7 +57,7 @@ if (menuPanel && !desktopMediaQuery.matches) {
 
 if (menuToggle) {
   menuToggle.addEventListener('click', () => {
-    const shouldOpen = !header?.classList.contains('site-header--menu-open');
+    const shouldOpen = !header?.classList.contains('header--menu-open');
     setMenuState(Boolean(shouldOpen));
   });
 }
@@ -84,7 +83,7 @@ const handleSubmenuToggle = (toggle) => {
     if (item !== currentItem) {
       item.classList.remove('is-open');
       item
-        .querySelectorAll(':scope > .menu__entry > .menu__toggle')
+        .querySelectorAll(':scope > .menu__entry > [data-submenu-toggle]')
         .forEach((siblingToggle) => siblingToggle.setAttribute('aria-expanded', 'false'));
     }
   });
@@ -95,15 +94,6 @@ const handleSubmenuToggle = (toggle) => {
 
 submenuToggles.forEach((toggle) => {
   toggle.addEventListener('click', () => {
-    handleSubmenuToggle(toggle);
-  });
-
-  toggle.addEventListener('keydown', (event) => {
-    if (event.key !== 'Enter' && event.key !== ' ') {
-      return;
-    }
-
-    event.preventDefault();
     handleSubmenuToggle(toggle);
   });
 });
@@ -134,7 +124,7 @@ desktopMediaQuery.addEventListener('change', (event) => {
   if (event.matches) {
     menuPanel.removeAttribute('hidden');
     document.body.classList.remove('is-scroll-locked');
-  } else if (!header?.classList.contains('site-header--menu-open')) {
+  } else if (!header?.classList.contains('header--menu-open')) {
     menuPanel.setAttribute('hidden', '');
   }
 });
@@ -157,6 +147,132 @@ openRequestButtons.forEach((button) => {
   });
 });
 
+/* START: Callback modal files and consents */
+document.querySelectorAll('.contact-form').forEach((managedForm) => {
+  const callbackSubmitButton = managedForm.querySelector('[data-callback-submit]');
+
+  if (!callbackSubmitButton) {
+    return;
+  }
+
+  const callbackModalElement = managedForm.closest('.modal');
+  const callbackFilesInput = managedForm.querySelector('[data-callback-files-input]');
+  const callbackFilesTrigger = managedForm.querySelector('[data-callback-files-trigger]');
+  const callbackFilesList = managedForm.querySelector('[data-callback-files-list]');
+  const callbackRequiredConsents = managedForm.querySelectorAll('[data-callback-required-consent]');
+  let callbackFilesStore = [];
+
+  const getFileKey = (file) => `${file.name}-${file.size}-${file.lastModified}`;
+
+  const syncCallbackSubmitState = () => {
+    const isEnabled = [...callbackRequiredConsents].every((checkbox) => checkbox.checked);
+    callbackSubmitButton.disabled = !isEnabled;
+  };
+
+  const syncCallbackFilesInput = () => {
+    if (!callbackFilesInput) {
+      return;
+    }
+
+    const dataTransfer = new DataTransfer();
+    callbackFilesStore.forEach((file) => dataTransfer.items.add(file));
+    callbackFilesInput.files = dataTransfer.files;
+  };
+
+  const renderCallbackFiles = () => {
+    if (!callbackFilesList) {
+      return;
+    }
+
+    callbackFilesList.innerHTML = '';
+
+    if (callbackFilesStore.length === 0) {
+      callbackFilesList.hidden = true;
+      return;
+    }
+
+    callbackFilesList.hidden = false;
+
+    callbackFilesStore.forEach((file, index) => {
+      const item = document.createElement('li');
+      const name = document.createElement('span');
+      const removeButton = document.createElement('button');
+
+      name.textContent = file.name;
+
+      removeButton.type = 'button';
+      removeButton.innerHTML = `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_85_1788" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="19" height="19">
+<rect width="18.9922" height="18.9922" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_85_1788)">
+<path d="M4.96313 14.6611L4.33008 14.028L8.86203 9.49606L4.33008 4.96411L4.96313 4.33105L9.49508 8.86301L14.027 4.33105L14.6601 4.96411L10.1281 9.49606L14.6601 14.028L14.027 14.6611L9.49508 10.1291L4.96313 14.6611Z" fill="black"/>
+</g>
+</svg>`;
+      removeButton.dataset.callbackFileRemove = String(index);
+
+      item.append(name, removeButton);
+      callbackFilesList.append(item);
+    });
+  };
+
+  const resetCallbackFormState = () => {
+    callbackFilesStore = [];
+    syncCallbackFilesInput();
+    renderCallbackFiles();
+    syncCallbackSubmitState();
+  };
+
+  callbackFilesTrigger?.addEventListener('click', () => {
+    callbackFilesInput?.click();
+  });
+
+  callbackFilesInput?.addEventListener('change', (event) => {
+    const nextFiles = Array.from(event.target.files ?? []);
+
+    nextFiles.forEach((file) => {
+      const exists = callbackFilesStore.some((storedFile) => getFileKey(storedFile) === getFileKey(file));
+
+      if (!exists) {
+        callbackFilesStore.push(file);
+      }
+    });
+
+    syncCallbackFilesInput();
+    renderCallbackFiles();
+    event.target.value = '';
+  });
+
+  callbackFilesList?.addEventListener('click', (event) => {
+    const removeButton = event.target.closest('[data-callback-file-remove]');
+
+    if (!removeButton) {
+      return;
+    }
+
+    const fileIndex = Number(removeButton.dataset.callbackFileRemove);
+
+    callbackFilesStore = callbackFilesStore.filter((_, index) => index !== fileIndex);
+    syncCallbackFilesInput();
+    renderCallbackFiles();
+  });
+
+  callbackRequiredConsents.forEach((checkbox) => {
+    checkbox.addEventListener('change', syncCallbackSubmitState);
+  });
+
+  managedForm.addEventListener('submit', () => {
+    window.setTimeout(resetCallbackFormState, 0);
+  });
+
+  callbackModalElement?.addEventListener('hidden.bs.modal', resetCallbackFormState);
+
+  syncCallbackFilesInput();
+  renderCallbackFiles();
+  syncCallbackSubmitState();
+});
+/* END: Callback modal files and consents */
+
 forms.forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -171,59 +287,3 @@ forms.forEach((form) => {
     successModal?.show();
   });
 });
-
-/* Menu variant 1 end */
-
-
-/* Menu variant 2 start */
-
-document.addEventListener('click', (event) => {
-  const toggle = event.target.closest('.js-header-bottom-toggle');
-  const menu = event.target.closest('.header-bottom-menu');
-
-  if (!toggle) {
-    if (!menu) {
-      document.querySelectorAll('.header-bottom-menu__item.is-open').forEach((item) => {
-        item.classList.remove('is-open');
-        item
-          .querySelectorAll('.js-header-bottom-toggle')
-          .forEach((button) => button.setAttribute('aria-expanded', 'false'));
-      });
-    }
-    return;
-  }
-
-  const item = toggle.closest('.header-bottom-menu__item--parent');
-  if (!item || window.innerWidth > 991) {
-    return;
-  }
-
-  event.preventDefault();
-
-  const isOpen = item.classList.contains('is-open');
-
-  document.querySelectorAll('.header-bottom-menu__item.is-open').forEach((openedItem) => {
-    if (openedItem !== item) {
-      openedItem.classList.remove('is-open');
-      openedItem
-        .querySelectorAll('.js-header-bottom-toggle')
-        .forEach((button) => button.setAttribute('aria-expanded', 'false'));
-    }
-  });
-
-  item.classList.toggle('is-open', !isOpen);
-  toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-});
-
-document.querySelectorAll('.js-header-bottom-toggle').forEach((toggle) => {
-  toggle.addEventListener('keydown', (event) => {
-    if (event.key !== 'Enter' && event.key !== ' ') {
-      return;
-    }
-
-    event.preventDefault();
-    toggle.click();
-  });
-});
-
-/* Menu variant 2 end */
