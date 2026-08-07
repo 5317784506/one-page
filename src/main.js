@@ -156,7 +156,122 @@ desktopMediaQuery.addEventListener('change', (event) => {
   } else if (!header?.classList.contains('header--menu-open')) {
     menuPanel.setAttribute('hidden', '');
   }
+
+  if (!event.matches) {
+    header?.classList.remove('header--compact');
+  }
 });
+
+const HEADER_COMPACT_OFFSET = 100;
+const HEADER_SCROLL_DELTA = 6;
+let lastHeaderScrollY = window.scrollY;
+let isHeaderScrollTicking = false;
+
+const updateHeaderCompactState = () => {
+  if (!header) {
+    return;
+  }
+
+  if (!desktopMediaQuery.matches) {
+    header.classList.remove('header--compact');
+    lastHeaderScrollY = window.scrollY;
+    return;
+  }
+
+  const currentScrollY = Math.max(0, window.scrollY);
+  const scrollDelta = currentScrollY - lastHeaderScrollY;
+
+  if (currentScrollY <= HEADER_COMPACT_OFFSET) {
+    header.classList.remove('header--compact');
+  } else if (scrollDelta > HEADER_SCROLL_DELTA) {
+    header.classList.add('header--compact');
+  } else if (scrollDelta < -HEADER_SCROLL_DELTA) {
+    header.classList.remove('header--compact');
+  }
+
+  lastHeaderScrollY = currentScrollY;
+};
+
+window.addEventListener(
+  'scroll',
+  () => {
+    if (isHeaderScrollTicking) {
+      return;
+    }
+
+    isHeaderScrollTicking = true;
+    window.requestAnimationFrame(() => {
+      updateHeaderCompactState();
+      isHeaderScrollTicking = false;
+    });
+  },
+  { passive: true }
+);
+
+updateHeaderCompactState();
+
+/* START: iOS Safari modal viewport fix */
+const isAppleTouchDevice =
+  /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+let modalScrollY = 0;
+let openModalCount = 0;
+
+const blurModalFocus = () => {
+  const activeElement = document.activeElement;
+
+  if (
+    activeElement instanceof HTMLElement &&
+    (activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'TEXTAREA' ||
+      activeElement.tagName === 'SELECT' ||
+      activeElement.isContentEditable)
+  ) {
+    activeElement.blur();
+  }
+};
+
+const lockModalScroll = () => {
+  if (openModalCount === 0) {
+    modalScrollY = window.scrollY;
+    document.body.style.top = `-${modalScrollY}px`;
+  }
+
+  openModalCount += 1;
+};
+
+const unlockModalScroll = () => {
+  openModalCount = Math.max(0, openModalCount - 1);
+
+  if (openModalCount > 0) {
+    return;
+  }
+
+  blurModalFocus();
+  document.body.style.top = '';
+  window.scrollTo(0, modalScrollY);
+
+  // Force Safari to recalculate layout/viewport after keyboard + modal
+  if (!isAppleTouchDevice) {
+    return;
+  }
+
+  const html = document.documentElement;
+  html.style.height = `${window.innerHeight}px`;
+
+  window.requestAnimationFrame(() => {
+    html.style.height = '';
+    window.scrollTo(0, modalScrollY);
+  });
+};
+
+document.querySelectorAll('.modal').forEach((modalElement) => {
+  modalElement.addEventListener('show.bs.modal', lockModalScroll);
+  modalElement.addEventListener('hide.bs.modal', blurModalFocus);
+  modalElement.addEventListener('hidden.bs.modal', unlockModalScroll);
+});
+/* END: iOS Safari modal viewport fix */
 
 openRequestButtons.forEach((button) => {
   button.addEventListener('click', () => {
